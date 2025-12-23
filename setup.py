@@ -1,14 +1,16 @@
-from setuptools import find_packages, setup
-from glob       import glob
-import os
+from setuptools import setup
 
 package_name = 'perception_ros'
-
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name,'Perception','Perception.model','Perception.utils'],
+    packages=[
+        package_name,
+        'Perception',
+        'Perception.model',
+        'Perception.utils'
+    ],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -18,12 +20,19 @@ setup(
     zip_safe=True,
     maintainer='emav',
     maintainer_email='emav@todo.todo',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Perception-based control stack',
+    license='TODO',
     tests_require=['pytest'],
+
     entry_points={
         'console_scripts': [
-        'perception = perception_ros.perception:main',
+            # Existing nodes
+            'perception = perception_ros.perception:main',
+            'controller = perception_ros.controller:main',
+
+            # ✅ Perception-based controllers (MATCH FILE NAMES)
+            'perception_pid_controller = perception_ros.perception_pid_controller:main',
+            'perception_pure_pursuit = perception_ros.perception_pure_pursuit:main',
         ],
     },
 )

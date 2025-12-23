@@ -31,7 +31,7 @@ class Perception(Node):
         super().__init__('Perception')
         self.image_subscription = self.create_subscription(
             Image,
-            '/sac/sensors/front_camera/image', #You can change this topic to your image topic
+            '/oakd/rgb/image_raw', #You can change this topic to your image topic
             self.image_callback,
             10)
         self.pose_publisher = self.create_publisher(
